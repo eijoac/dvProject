@@ -8,7 +8,7 @@ In this project, I am interested in the speed of employment recovery by industry
 ## Data
 I obtained my raw data on employment from [here](http://data.bls.gov/cgi-bin/surveymost?ce), and I then cleaned it to get the information I wanted for this project.
 
-I only investigate industries at a highly aggregated level. I have 11 industries in total based the supersectors defined [here](http://www.bls.gov/iag/tgs/iag_index_naics.htm).
+I only investigate industries at a highly aggregated level. I have 11 industries in total based on the supersectors defined [here](http://www.bls.gov/iag/tgs/iag_index_naics.htm).
 
 ## What's my main findings
 
