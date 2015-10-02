@@ -20,3 +20,4 @@ I only investigate industries at a highly aggregated level. I have 11 industries
 
 ## What I want to improve on this graph
 * I have too much sectors in one charts. At least, I want to be able to selectively display certain sectors. (something like [this](http://dimplejs.org/advanced_examples_viewer.html?id=advanced_interactive_legends).)
+* I want to tell a story from the chart instead of simply showing the facts.
