@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 
+<!-- This code is based on basic_charts.html in lesson 2 -->
+
 <head>
   <meta charset="utf-8">
   <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -8,9 +10,11 @@
 
   <style>
 
+    /*
     circle.dimple-series-1 {
       fill:  red;
     }
+    */
     
     /*
     h2 {
@@ -67,17 +71,75 @@
       var y = myChart.addMeasureAxis("y", "percentage change");
        
       x.dateParseFormat = "%b-%y";
-      x.tickFormat = "%b/%Y";
+      x.tickFormat = "%b/%y";
       x.title = "Date"
 
       y.title = "% Change in Employment"
 
       myChart.addSeries("industry", dimple.plot.line);
 
-      debugger;
+      // debugger;
 
-      myChart.addLegend(850, 70, 100, 400, "right");
+      var myLegend = myChart.addLegend(850, 100, 100, 400, "right");
       myChart.draw();
+
+
+      // important!
+      // the following code is totally based on a dimple example
+      // http://dimplejs.org/advanced_examples_viewer.html?id=advanced_interactive_legends
+
+      // orphan the legend. This means it will not respond to graph updates.
+      myChart.legends = [];
+
+      // add the legend title
+      // put it into a d3 dataobject to split it onto 2 lines.
+      svg.selectAll("title_text")
+        .data(["Click legend to","show/hide industries:"])
+        .enter()
+        .append("text")
+          .attr("x", 760)
+          .attr("y", function (d, i) { return 90 + i * 14; })
+          .style("font-family", "sans-serif")
+          .style("font-size", "10px")
+          .style("font-weight", "bold")
+          .style("color", "Black")
+          .text(function (d) { return d; });
+
+      // Get a unique list of industry values to use when filtering
+      var filterValues = dimple.getUniqueValues(data, "industry");
+
+      // debugger;
+      
+      // Get all the rectangles from our now orphaned legend
+      myLegend.shapes.selectAll("rect")
+        // Add a click event to each rectangle
+        .on("click", function (e) {
+          // This indicates whether the item is already visible or not
+          var hide = false;
+          var newFilters = [];
+          // If the filters contain the clicked shape hide it
+          filterValues.forEach(function (f) {
+            if (f === e.aggField.slice(-1)[0]) {
+              hide = true;
+            } else {
+              newFilters.push(f);
+            }
+          });
+          // Hide the shape or show it
+          if (hide) {
+            d3.select(this).style("opacity", 0.2);
+          } else {
+            newFilters.push(e.aggField.slice(-1)[0]);
+            d3.select(this).style("opacity", 0.8);
+          }
+          // Update the filters
+          filterValues = newFilters;
+          // Filter the data
+          myChart.data = dimple.filterData(data, "industry", filterValues);
+          // Passing a duration parameter makes the chart animate. Without
+          // it there is no transition
+          myChart.draw(800);
+        });
     };
   </script>
 
