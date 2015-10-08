@@ -60,6 +60,17 @@
         .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+      // Fill an SVG background to show the period of recession (Dec/2007 - Jun/2009)
+      // This is done in a pretty cruel way.
+      // There should be a better way to get the pixel values of a spcific x or y measure 
+      svg.append("rect")
+        .attr("x", "60px")
+        .attr("y", "30px")
+        .attr("width", "23.5%")
+        .attr("height", "80.2%")
+        .style("fill", "#F0F0F5");
+
+      
       /*
         Dimple.js Chart construction code
       */
@@ -68,20 +79,34 @@
       myChart.setBounds(60, 30, 650, 400)
        
       var x = myChart.addTimeAxis("x", "date");
+      // var x2 = myChart.addMeasureAxis("x", "month");
+
       var y = myChart.addMeasureAxis("y", "percentage change");
+      //var y2 =  myChart.addMeasureAxis("y", "fraction of total employment (non-farm sectors)");
+      // y2.hidden = true;
        
       x.dateParseFormat = "%b-%y";
       x.tickFormat = "%b/%y";
       // x.timePeriod = d3.time.months;
       // x.timeInterval = 12;
       x.showGridlines = true;
-      x.title = "Date"
+      x.title = "Date (shaded area indicates the period of recession)"
+
+      // x2.title = "Months Since the Beginning of the Recession"
 
       y.title = "% Change in Employment"
 
-      myChart.addSeries("industry", dimple.plot.line);
+      var mySeries = myChart.addSeries("industry", dimple.plot.line);
+      // var mySeries2 = myChart.addSeries("industry", dimple.plot.line, [x, y2]);
+            
+      /*
+      mySeries.getTooltipText = function (e) {
 
-      // debugger;
+        debugger;
+        return ["hello"];
+      };*/
+
+      debugger;
 
       var myLegend = myChart.addLegend(850, 100, 100, 400, "right");
       myChart.draw();
@@ -103,7 +128,7 @@
           .attr("x", 760)
           .attr("y", function (d, i) { return 90 + i * 14; })
           .style("font-family", "sans-serif")
-          .style("font-size", "10px")
+          .style("font-size", "12px")
           .style("font-weight", "bold")
           .style("color", "Black")
           .text(function (d) { return d; });
