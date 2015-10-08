@@ -82,15 +82,17 @@
       // var x2 = myChart.addMeasureAxis("x", "month");
 
       var y = myChart.addMeasureAxis("y", "percentage change");
-      //var y2 =  myChart.addMeasureAxis("y", "fraction of total employment (non-farm sectors)");
+      // var y2 =  myChart.addMeasureAxis("y", "fraction of total employment (non-farm sectors)");
       // y2.hidden = true;
+
+      // var z =  myChart.addMeasureAxis("z", "fraction of total employment (non-farm sectors)");
        
       x.dateParseFormat = "%b-%y";
       x.tickFormat = "%b/%y";
       // x.timePeriod = d3.time.months;
       // x.timeInterval = 12;
       x.showGridlines = true;
-      x.title = "Date (shaded area indicates the period of recession)"
+      x.title = "Date (Shaded area indicates the period of recession: Dec/07 - Jun/09)"
 
       // x2.title = "Months Since the Beginning of the Recession"
 
@@ -104,11 +106,13 @@
 
         debugger;
         return ["hello"];
-      };*/
-
+      };
+      */
+      
       debugger;
 
-      var myLegend = myChart.addLegend(850, 100, 100, 400, "right");
+      var myLegend = myChart.addLegend(860, 135, 100, 400, "right");
+
       myChart.draw();
 
 
@@ -122,11 +126,11 @@
       // add the legend title
       // put it into a d3 dataobject to split it onto 2 lines.
       svg.selectAll("title_text")
-        .data(["Click legend to","show/hide industries:"])
+        .data(["Legend", "1) the % number indicates", "the average relative size of the",  "industry in terms of employment", "2) Click legend to show/hide industries"])
         .enter()
         .append("text")
-          .attr("x", 760)
-          .attr("y", function (d, i) { return 90 + i * 14; })
+          .attr("x", 730)
+          .attr("y", function (d, i) { return 80 + i * 14; })
           .style("font-family", "sans-serif")
           .style("font-size", "12px")
           .style("font-weight", "bold")
