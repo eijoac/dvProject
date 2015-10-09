@@ -10,18 +10,6 @@
 
   <style>
 
-    /*
-    circle.dimple-series-1 {
-      fill:  red;
-    }
-    */
-    
-    /*
-    h2 {
-      text-align: center;
-    }
-    */
-    
     svg {
       margin-left: auto; 
       margin-right: auto; 
@@ -50,7 +38,7 @@
       /*
       d3.select("body")
         .append("h2")
-        .text("Percentage Change in Employment by Industry Since the Start of 2007 Recession");
+        .text("Percentage Change in Employment by Industry Since the Start of the Great Recession in Dec 2007");
       */
       
       var svg = d3.select("body")
@@ -61,8 +49,8 @@
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
       // Fill an SVG background to show the period of recession (Dec/2007 - Jun/2009)
-      // This is done in a pretty cruel way.
-      // There should be a better way to get the pixel values of a spcific x or y measure 
+      // This is done in a pretty crude way.
+      // There should be a better way to get the pixel values of a spcific x or y tick 
       svg.append("rect")
         .attr("x", "60px")
         .attr("y", "30px")
@@ -73,6 +61,8 @@
       
       /*
         Dimple.js Chart construction code
+        Some of the commented-out code block is left there on purpose for
+        potential future use to improve the graph
       */
 
       var myChart = new dimple.chart(svg, data);
@@ -109,16 +99,20 @@
       };
       */
       
-      debugger;
+      // debugger;
 
       var myLegend = myChart.addLegend(860, 135, 100, 400, "right");
 
       myChart.draw();
 
 
-      // important!
-      // the following code is totally based on a dimple example
-      // http://dimplejs.org/advanced_examples_viewer.html?id=advanced_interactive_legends
+      /*
+        Allow selectively plot any combination of sectors
+
+        Important!
+        the following code is totally based on a dimple example
+        http://dimplejs.org/advanced_examples_viewer.html?id=advanced_interactive_legends
+      */
 
       // orphan the legend. This means it will not respond to graph updates.
       myChart.legends = [];
@@ -126,7 +120,8 @@
       // add the legend title
       // put it into a d3 dataobject to split it onto 2 lines.
       svg.selectAll("title_text")
-        .data(["Legend", "1) the % number indicates", "the average relative size of the",  "industry in terms of employment", "2) Click legend to show/hide industries"])
+        .data(["Legend", "1) the % number indicates", "the average relative size of the",
+          "industry in terms of employment", "2) Click legend to show/hide industries"])
         .enter()
         .append("text")
           .attr("x", 730)
