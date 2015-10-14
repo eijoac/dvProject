@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script>
+
+  <style>
+
+    circle.dimple-series-1 {
+      fill:  red;
+    }
+
+    h2 {
+      text-align: center;
+    }
+    
+    svg {
+      margin-left: auto; 
+      margin-right: auto; 
+      display: block;
+    }
+    
+  </style>
+
+  <script type="text/javascript">
+    function draw(data) {
+
+      /*
+        D3.js setup code
+      */
+
+      "use strict";
+
+      // following Michael Bostock's Margin Convention
+      var margin = {top: 20, right: 10, bottom: 20, left: 10};
+
+      var width = 960 - margin.left - margin.right,
+          height = 600 - margin.top - margin.bottom;
+
+      // debugger;
+
+      d3.select("body")
+        .append("h2")
+        .text("Percentage Change in Employment by Industry Since the Start of 2007 Recession");
+
+      var svg = d3.select("body")
+        .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      /*
+        Dimple.js Chart construction code
+      */
+
+      var myChart = new dimple.chart(svg, data);
+      myChart.setBounds(60, 30, 650, 500)
+       
+      var x = myChart.addTimeAxis("x", "date");
+      var y = myChart.addMeasureAxis("y", "percentage change");
+       
+      x.dateParseFormat = "%b-%y";
+      x.tickFormat = "%b/%Y";
+      x.title = "Date"
+
+      y.title = "% Change in Employment"
+
+      myChart.addSeries("industry", dimple.plot.line);
+
+      debugger;
+
+      myChart.addLegend(850, 70, 100, 400, "right");
+      myChart.draw();
+    };
+  </script>
+
+</head>
+
+<body>
+   <script type="text/javascript">
+    /*
+    Use D3 (not dimple.js) to load the CSV file
+    and pass the contents of it to the draw function
+    */
+    d3.csv("empChangeByInd07RecessionV2.csv", draw);
+  </script>
+</body>
+
+</html>
