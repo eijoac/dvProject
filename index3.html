@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<!-- This code is based on basic_charts.html in lesson 2 -->
+
+<head>
+  <meta charset="utf-8">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script>
+
+  <style>
+
+    h2 {
+      text-align: center;
+    }
+
+    svg {
+      margin-left: auto; 
+      margin-right: auto; 
+      display: block;
+    }
+    
+  </style>
+
+  <script type="text/javascript">
+    function draw(data) {
+
+      /*
+        D3.js setup code
+      */
+
+      "use strict";
+
+      // following Michael Bostock's Margin Convention
+      var margin = {top: 20, right: 10, bottom: 20, left: 10};
+
+      var width = 960 - margin.left - margin.right,
+          height = 500 - margin.top - margin.bottom;
+
+      // add title of the graph
+      d3.select("body")
+        .append("h2")
+        .text("Job \"Recovery\" after the Great Recession: A Tale of Two Sectors");
+      
+      var svg = d3.select("body")
+        .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      // Fill an SVG background to show the period of recession (Dec/2007 - Jun/2009)
+      // This is done in a pretty crude way.
+      // There should be a better way to get the pixel values of a spcific x or y tick 
+      svg.append("rect")
+        .attr("x", "60px")
+        .attr("y", "30px")
+        .attr("width", "14.5%")
+        .attr("height", "80.2%")
+        .style("fill", "#F0F0F5");
+
+
+      // add the legend title
+      // put it into a d3 dataobject to split it onto 2 lines.
+      svg.selectAll("title_text")
+        .data(["Legend"])
+        .enter()
+        .append("text")
+          .attr("x", 730)
+          .attr("y", function (d, i) { return 80 + i * 14; })
+          .style("font-family", "sans-serif")
+          .style("font-size", "12px")
+          .style("font-weight", "bold")
+          .style("color", "Black")
+          .text(function (d) { return d; });
+
+      svg.selectAll("title_text")
+        .data(["Note: the % number indicates", "the average relative size of the",
+          "industry in terms of employment", "in total non-farming sectors"])
+        .enter()
+        .append("text")
+          .attr("x", 730)
+          .attr("y", function (d, i) { return 140 + i * 14; })
+          .style("font-family", "sans-serif")
+          .style("font-size", "11px")
+          .style("color", "Black")
+          .text(function (d) { return d; });
+
+      
+      /*
+        Dimple.js Chart construction code
+        Some of the commented-out code block is left there on purpose for
+        potential future use to improve the graph
+      */
+
+      // filter the data to focus on two sectors.
+      // 1) education and health; 2) construction
+      var myData = dimple.filterData(data, "industry", ["Education and Health (15.1%)",
+        "Construction (4.5%)"])
+
+      var myChart = new dimple.chart(svg, myData);
+      myChart.setBounds(60, 30, 650, 400)
+       
+      var x = myChart.addTimeAxis("x", "date");
+      // var x2 = myChart.addMeasureAxis("x", "month");
+
+      var y = myChart.addMeasureAxis("y", "percentage change");
+
+       
+      x.dateParseFormat = "%b-%y";
+      x.tickFormat = "%b/%y";
+      x.showGridlines = true;
+      x.title = "Date (Shaded area indicates the period of recession: Dec/07 - Jun/09)"
+
+      y.title = "% Change in Employment since Dec/07"
+
+      var mySeries = myChart.addSeries("industry", dimple.plot.line);
+
+      var myLegend = myChart.addLegend(810, 85, 100, 400, "right");
+
+      myChart.draw();
+     
+    };
+  </script>
+
+</head>
+
+<body>
+   <script type="text/javascript">
+    /*
+    Use D3 (not dimple.js) to load the CSV file
+    and pass the contents of it to the draw function
+    */
+    d3.csv("empChangeByInd07RecessionV2.csv", draw);
+  </script>
+</body>
+
+</html>
