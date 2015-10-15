@@ -1,10 +1,16 @@
 ## Summary
-This chart shows the percentage change of employment by industry since the beginning of [the great recession](https://en.wikipedia.org/wiki/Great_Recession) in Dec. 2007.
+This chart highlights the very different paths of job recovery taken by each industry since [the great recession](https://en.wikipedia.org/wiki/Great_Recession).
+
+For example, while some industries experienced significant employment loss after the recession and had extremely slow job recovery paths (see construction and manufacturing sectors), others seem to immune to the recession (see government and education & health sectors). As another example, while most industries had a slow but steady recovery path after their employment bottomed out, the path taken by the mining and logging sector is quite bumpy (volatile).
+
+Which sector are you in? How does the job recovery path in your sector compare to your friends'? By clicking on the legend, you can selectively plot recovery paths for the sectors you are interested in.
 
 ## Motivation
-One of the characteristics of this recent recession is the slow recovery of employment (relative to other recessions since 1950s). It's a topic that has been discussed numerous times by the media (see, for example, an [article](http://www.heritage.org/research/reports/2011/09/how-congress-can-support-not-hinder-labor-market-recovery) and a [chart](http://www.heritage.org/~/media/images/reports/2011/09/b2602/b2602_chart2750px.ashx) therein by The Heritage Foundation).
+One of the characteristics of this recent recession is its slow recovery of employment (relative to other recessions since 1950s). It's a topic that has been discussed numerous times by the media (see, for example, an [article](http://www.heritage.org/research/reports/2011/09/how-congress-can-support-not-hinder-labor-market-recovery) and a [chart](http://www.heritage.org/~/media/images/reports/2011/09/b2602/b2602_chart2750px.ashx) therein by The Heritage Foundation).
 
-In this project, I am interested in the speed of employment recovery by industry in this recession. The US housing bubble and the sub-prime mortgage crisis are two of the many reasons that led to the recession. I am curious about how hard construction and financial sectors were hit in terms of employment recovery, and in general how fast employment recovers in other industries.
+In this project, I am interested in the speed/path of employment recovery by industry in this recession. The US housing bubble and the sub-prime mortgage crisis are two of the many reasons that led to the recession. I am curious about how hard construction and financial sectors were hit in terms of employment recovery, and in general how fast employment recovers in other industries.
+
+To my surprise, I found that the recovery paths for different industries are very different. I decided to make this *difference* cross industries a central theme of my visualization. Of course, while my main message is about the difference, readers can certainly discover more details from my graph.
 
 ## Data
 I obtained my raw data set on monthly employment (seasonally adjusted) by industry from [here](http://data.bls.gov/cgi-bin/surveymost?ce), and I then cleaned it to get the information I wanted for this project.
@@ -12,32 +18,14 @@ I obtained my raw data set on monthly employment (seasonally adjusted) by indust
 I only investigate industries at a highly aggregated level. I have 11 industries in total based the supersectors defined [here](http://www.bls.gov/iag/tgs/iag_index_naics.htm).
 
 ## Design
-In order to show how fast job recovers in each industry, I choose to report monthly percentage change in employment relative to the beginning of the recession (Dec. 2007). Since the data are time series, line chart is a natural choice.
+In order to highlight the difference of job recovery path in each industry, I choose to report monthly percentage change in employment relative to the beginning of the recession (Dec. 2007). Since the data are time series, line chart is a natural choice.
 
-I have 11 industries in total, and hence 11 time series. I use color coding to distinguish the sectors. In some sense, it might be a bit too much lines to be displayed on a single chart. In addition, some readers may only want to focus on comparison between certain sectors. Therefore, I provide an option for users to selectively plot any combination of industries that they are interested in. (This is achieved by following the dimple.js sample code [here](http://dimplejs.org/advanced_examples_viewer.html?id=advanced_interactive_legends).)
-
-## Main findings
-
-1. Construction sector indeed has the slowest job recovery rate.
-2. Financial sector also has a slow job recovery rate. It's only better than three other sectors, Information, Manufacturing and Construction.
-3. Government sector (public jobs) are mostly not affected by the recession.
-4. Employment in Mining and Logging sector is quite volatile after the recession.
-5. In contrast to all other sectors, employment in Education and Health sector has been steadily growing since the recession started. (It's a big surprise to me.)
-6. Although the recession officially ended in June 2009, at that time employment in most sectors didn't recover.
-
-Now, I offer some comments on the above facts.
-
-1/2) Housing bubble and financial market are where the trouble got started. No wonder that the employment in construction and financial sectors were hit hard.
-
-3) Public jobs are the most stable ones unless the government cuts spendings, which is not something it wants to do during a recession.
-
-4) One factor other than the recession that may affect employment in logging and mining sector is the global energy market. Since that market has been quite volatile in recent years (think of the gas price), that could be a reason why the employment in the sector is volatile. However, note that the employment in the sector only accounts for 0.6% of the total non-farm employment, so it contributes little to the overall performance of the job recovery.
-
-5) The rising in employment in the education and health sector could simply be a long-term trend started before the recession, or it could be that people went back to school due to loss of jobs. Further investigation is needed. Checking employment in sub-sectors should help reveal some info.
-
-6) I believe that in general job recovery lags behind output/GDP recovery in a recession.
+I have 11 industries in total, and hence 11 time series. I use color coding to distinguish the sectors. The chart delivers the main message well. It shows at a glance the very different recovery paths of each industry. However, in some sense, it might be a bit too much lines to be displayed on a single chart. In addition, some readers may only want to focus on comparison between certain sectors. Therefore, I provide an option for users to selectively plot any combination of industries that they are interested in. (This is achieved by following the dimple.js sample code [here](http://dimplejs.org/advanced_examples_viewer.html?id=advanced_interactive_legends).)
 
 ## Feedback
+
+### Feedback led to version 2 (index2.html)
+
 Below are the feedback from teja (Udacity Coach), Marina (Udacity student) and my wife. I also included my reply and work that was done to improve my visualization in response to the feedback. teja and Marina's feedback and my reply can also be found [here](https://discussions.udacity.com/t/final-project-feedback-request-employment-recovery-by-industry-since-the-recent-recession/33768/2).
 
 **teja's feedback and my follow-up**
@@ -103,6 +91,78 @@ my follow-up: see my follow-up 2) to Marina's comment.
 2) tell a story to me instead of showing these plain boring facts
 
 my follow-up: I offered some comments on my main findings. However, I have to say that I need to do much more to tell a real good story out of this graph. In fact, one potential good story I am thinking about is to focus on the health and education sector and to investigate further why the employment in that sector has been rising during and after the recession. This is likely to be a separate project and require more investment in time.
+
+### Feedback led to version 3 (index3.html)
+
+The last grader's feedback is very helpful. it quickly led to version 3.
+
+**grader's main feedback**
+
+This is probably the most important section of the whole project. In this rubric box it is requested your visualization describes a story, for example: identifying a relation in your data and using your graph to describe such finding in a visual way. When I start with a new project I always go directly to the visualization with the aim of identify the story it pretends to convey.
+
+Currently, this chart is exploratory rather than explanatory. It's exploratory because the viewer is presented with all of the data, and the viewer can explore around and try to make conclusions about the data for himself. For this chart to be explanatory, you as chart maker need to tell a story about the data. You need to find something interesting and force the viewer to see what it was that you found interesting about the chart. In this point I agree with the main message from your wife's feedback: "(...)tell a story to me instead of showing these plain boring facts(...)", your visualization includes information that could be used to describe a story, but it is up to the viewer to find it.
+
+From your data I can find multiple stories, like the one you mention: "health and education sector and to investigate further why the employment in that sector has been rising during and after the recession", this is definitely a good story to tell, but there are also others like how crisis affected the construction and financial sectors.
+
+The second thing I did was to review your summary, and found it is phrased in exploratory words: "This chart shows the percentage change of employment by industry since the beginning of the great recession in Dec. 2007.". So, at this stage it is clear to me there is no clear story being described but data is presented for viewers to raise their own conclusions.
+
+Note in this section of the rubric it is requested your visualization to describe a story that you identified in the dataset previously, that is, the exploratory step is in the dataset side while the explanatory step is in the visualization. Once you identify a valid story, you must describe it in the summary section, in order to point it to viewers. Apart of this, the feedback stage is quite important also since you want to use this as a test phase for your visualization, for that reason it is recommended you ask for comments not just related to design considerations, but also to the relationships they can identify in your visualization.
+
+I think this is an interesting link where it is described the differences between explanatory and exploratory visualizations.
+
+To end, design considerations are important since these are used to present the data to viewers in a direct and clear way. For that reason I would suggest to add a title, this helps your viewers to quickly understand the main objective of your visualization and so recognize your story.
+
+###Feedback led to the final version
+
+Marina and Andrew's feedback prompted me to think carefully again about the grader's suggestion. I revised my version 2 to the final version to incorporate the grader's feedback as well as my original motivation. (see [here](https://discussions.udacity.com/t/feedback-visualization/34560/13))
+
+**Marina's feedback**
+
+I truly liked the another...
+
+But the focus is also interesting. The raising of the Education & Healthy is quite impressive as the fail of Construction.
+One thing that passed by my mind is on the tooltip, add something like '3 months after the Dec/2007' or any 'magic date'. Maybe it would help to conduct the story.
+
+Thanks again one more time and good look on the next submission.
+
+**Andrew's feedback**
+A few quick notes on your chart
+
+- I think it is a clear message.
+- Are these the best and the worst?? Perhaps expand a bit in some text under the heading, that there are gaps of up to 30% that persists today, that the rate in recent years are the same --- the construction jobs seems to never catch up
+- Maybe try with the +y axis same height as -y (minus 30 to plus 30) -- the whitespace at the top may help reinforce the message
+- Attribute your data source in a footnote perhaps
+
+**my follow-up to Marina and Andrew's feedback**
+
+Marina, you still like the previous chart, and Andrew, you asked me why education & health and construction sectors. Your feedback prompted me to think again. While it's true that the two sectors i picked are the best and worst and they are an interesting contrast, I could have chosen any two and make up a story. Also, by highlighting only two sectors, i lose quite a lot of info that i wanted readers to notice and perhaps to discover at first place (my original motivation).
+
+Now, I decided to stick to my original motivation but to tell the story in a different way. This time, I want the readers to stay focused on one main message: the many different paths to the job recovery. I reverted my graph to the previous one and change the title so as to lead the reader to what i want. There are many potential stories behind the graph, but the main message i want the readers to take home is the very different paths to recover.
+
+## Many paths to recovery (my own takeaways)
+
+I discuss my own takeaways from reading/studying the graph. Note that they are not necessary the main messages I want to deliver to the reader. The main message or the explanatory part I want to convey to the reader is, again, the very different paths of job recovery in each industries. However, that doesn't prevent a reader, like me, to get more out of the graph, i.e., to explore a bit more from the graph.  
+
+The facts I see,
+
+1. Construction sector indeed has the slowest job recovery rate.
+2. Financial sector also has a slow job recovery rate. It's only better than three other sectors, Information, Manufacturing and Construction.
+3. Government sector (public jobs) are mostly not affected by the recession.
+4. Employment in Mining and Logging sector is quite volatile after the recession.
+5. In contrast to all other sectors, employment in Education and Health sector has been steadily growing since the recession started. (It's a big surprise to me.)
+6. Although the recession officially ended in June 2009, at that time employment in most sectors didn't recover.
+
+Now, I offer some comments on the above facts.
+
+1/2) Housing bubble and financial market are where the trouble got started. No wonder that the employment in construction and financial sectors were hit hard.
+
+3) Public jobs are the most stable ones unless the government cuts spendings, which is not something it wants to do during a recession.
+
+4) One factor other than the recession that may affect employment in logging and mining sector is the global energy market. Since that market has been quite volatile in recent years (think of the gas price), that could be a reason why the employment in the sector is volatile. However, note that the employment in the sector only accounts for 0.6% of the total non-farm employment, so it contributes little to the overall performance of the job recovery.
+
+5) The rising in employment in the education and health sector could simply be a long-term trend started before the recession, or it could be that people went back to school due to loss of jobs. Further investigation is needed. Checking employment in sub-sectors should help reveal some info.
+
+6) I believe that in general job recovery lags behind output/GDP recovery in a recession.
 
 ## Resources
 
