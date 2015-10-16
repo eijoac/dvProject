@@ -76,7 +76,7 @@
       */
 
       var myChart = new dimple.chart(svg, data);
-      myChart.setBounds(60, 30, 650, 400)
+      myChart.setBounds(60, 30, 650, 400);
        
       var x = myChart.addTimeAxis("x", "date");
       // var x2 = myChart.addMeasureAxis("x", "month");
@@ -86,9 +86,8 @@
       x.dateParseFormat = "%b-%y";
       x.tickFormat = "%b/%y";
       x.showGridlines = true;
-      x.title = "Date (Shaded area indicates the period of recession: Dec/07 - Jun/09)"
-
-      y.title = "% Change in Employment Since Dec/07"
+      x.title = "Date (Shaded area indicates the period of recession: Dec/07 - Jun/09)";
+      y.title = "% Change in Employment Since Dec/07";
 
       var mySeries = myChart.addSeries("industry", dimple.plot.line);
 
@@ -96,6 +95,25 @@
 
       myChart.draw();
 
+      // select only a few representative sectors to display by default
+      // make the legend keys of the non-default sectors opaque
+      myLegend.shapes.selectAll(".dimple-legend-key.dimple-leisure-and-hospitality--10-2--")
+        .style("opacity",0.2);
+
+      myLegend.shapes.selectAll(".dimple-legend-key.dimple-other-services--4-0--")
+        .style("opacity",0.2);
+
+      myLegend.shapes.selectAll(".dimple-legend-key.dimple-professional-and-business--13-2--")
+        .style("opacity",0.2);
+
+      myLegend.shapes.selectAll(".dimple-legend-key.dimple-trade--transportation-and-utilities--19-0--")
+        .style("opacity",0.2);
+
+      myLegend.shapes.selectAll(".dimple-legend-key.dimple-financial-activities--5-9--")
+        .style("opacity",0.2);
+
+      myLegend.shapes.selectAll(".dimple-legend-key.dimple-information--2-0--")
+        .style("opacity",0.2);
 
       /*
         Allow selectively plot any combination of sectors
@@ -124,9 +142,9 @@
 
       // add note
       svg.selectAll("title_text")
-        .data(["Note: the % number in the legend indicates",
+        .data(["Note: 1) the % number in the legend indicates",
           "the average relative size of the industry in",
-          "terms of employment"])
+          "terms of employment; 2) Only five industries", "are shown by default"])
         .enter()
         .append("text")
           .attr("x", 730)
@@ -142,17 +160,24 @@
         .enter()
         .append("text")
           .attr("x", 730)
-          .attr("y", function (d, i) { return 300 + i * 14; })
+          .attr("y", function (d, i) { return 315 + i * 14; })
           .style("font-family", "sans-serif")
           .style("font-size", "11px")
           .style("color", "Black")
           .text(function (d) { return d; });
 
       // Get a unique list of industry values to use when filtering
-      var filterValues = dimple.getUniqueValues(data, "industry");
-
-      // debugger;
+      // var filterValues = dimple.getUniqueValues(data, "industry");
       
+      // Set up the default industries to display
+      var filterValues = ["Education and Health (15.1%)",
+        "Government (16.5%)", "Manufacturing (9.0%)",
+        "Construction (4.5%)", "Mining and Logging (0.6%)"];
+
+      myChart.data = dimple.filterData(data, "industry", filterValues);
+
+      myChart.draw();
+
       // Get all the rectangles from our now orphaned legend
       myLegend.shapes.selectAll("rect")
         // Add a click event to each rectangle

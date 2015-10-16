@@ -20,7 +20,7 @@ I only investigate industries at a highly aggregated level. I have 11 industries
 ## Design
 In order to highlight the difference of job recovery path in each industry, I choose to report monthly percentage change in employment relative to the beginning of the recession (Dec. 2007). Since the data are time series, line chart is a natural choice.
 
-I have 11 industries in total, and hence 11 time series. I use color coding to distinguish the sectors. The chart delivers the main message well. It shows at a glance the very different recovery paths of each industry. However, in some sense, it might be a bit too much lines to be displayed on a single chart. In addition, some readers may only want to focus on comparison between certain sectors. Therefore, I provide an option for users to selectively plot any combination of industries that they are interested in. (This is achieved by following the dimple.js sample code [here](http://dimplejs.org/advanced_examples_viewer.html?id=advanced_interactive_legends).)
+I have 11 industries in total, and hence 11 time series. I use color coding to distinguish the sectors. The chart can deliver the main message well. It shows at a glance the very different recovery paths of each industry. However, in some sense, it might be a bit too much lines to be displayed on a single chart. In addition, some readers may only want to focus on comparison between certain sectors. Therefore, I choose to display five sectors by default, and I also provide an option for users to selectively plot any combination of industries that they are interested in. (This is achieved by following the dimple.js sample code [here](http://dimplejs.org/advanced_examples_viewer.html?id=advanced_interactive_legends).)
 
 ## Feedback
 
@@ -138,6 +138,38 @@ A few quick notes on your chart
 Marina, you still like the previous chart, and Andrew, you asked me why education & health and construction sectors. Your feedback prompted me to think again. While it's true that the two sectors i picked are the best and worst and they are an interesting contrast, I could have chosen any two and make up a story. Also, by highlighting only two sectors, i lose quite a lot of info that i wanted readers to notice and perhaps to discover at first place (my original motivation).
 
 Now, I decided to stick to my original motivation but to tell the story in a different way. This time, I want the readers to stay focused on one main message: the many different paths to the job recovery. I reverted my graph to the previous one and change the title so as to lead the reader to what i want. There are many potential stories behind the graph, but the main message i want the readers to take home is the very different paths to recover.
+
+**Further feedback from Andrew**
+
+I don't know how much time you have. The real challenge with your full chart is that there are 11 categories which makes it almost impossible to follow the the lines.
+
+I think the are three or four paths in your data.
+
+- bust and boom - mining (could go into the next group)
+
+- ultimate winners - education leisure and business
+
+- deep fall and never recover (ultimate losers) -- the bottom three lines
+
+- back to normal - Other, trade and finance, government
+
+Then maybe some of these ideas individually or combined
+
+- add some text for each group,
+
+- use a palette that assigns different shades of the same color to each group e.g. shades of red, shades of blue, shades of green, shades of purple to the three groupings. Use these colors in the text somehow to associate and perhaps a click button to selects only the members of that group together (i wonder i simple has any grouping features)
+
+- three separate charts with more compressed y axis to show each group. (be sure to keep the y axis identical) (almost like sparklines)
+
+For palettes you can try colorbrewer.org. Choose "sequential" and number of classes at top left (4) - click single hue and you will get a set of colored palletes. Click export and you get code.
+
+You can also try heavier lines - or just heavier for the top group and bottom group and the middle group stick with lighter lines because it is the least interesting group. Sometimes heavier lines are needed to discern different shades.
+
+Jay - one more simpler thought that keys off yours. Plot only the top 4 and the bottom 3, a tale of gains and losses, with shades from two colors.
+
+**my follow-up**
+
+Thanks again. Based on your suggestion, i am thinking of another potentially simpler solution. How about I only show a few representative sectors by default, say construction, manufacturing, education & health, mining & logging, and government. The main message here is the diverse paths to recovery, winners and losers in your words. I will still offer the options for the readers to select other sectors of their interest. In this way, i can still have all the industries (otherwise, you would always wonder about other sectors), I can make the graph less messy (by default), and I can highlight the main message.
 
 ## Many paths to recovery (my own takeaways)
 
